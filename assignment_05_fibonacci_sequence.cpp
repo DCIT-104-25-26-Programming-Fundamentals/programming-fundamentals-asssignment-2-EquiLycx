@@ -51,3 +51,73 @@
 #include <iostream>
 using namespace std;
 
+void printFibonacci(int n);
+bool isFibonacci(long long num);
+
+int main() {
+    int choice;
+    cout << "=== Fibonacci Sequence Generator ===" << endl;
+    cout << "1. Part A: Print the First N Terms" << endl;
+    cout << "2. Part B: Check if a Number Belongs to the Sequence" << endl;
+    cout << "Select operation (1-2): ";
+    cin >> choice;
+
+    if (choice == 1) {
+        int n;
+        cout << "How many terms? ";
+        cin >> n;
+
+        if (n <= 0) {
+            cout << "Error: N must be a positive integer." << endl;
+            return 1;
+        }
+
+        printFibonacci(n);
+    }
+    else if (choice == 2) {
+        long long num;
+        cout << "Enter a number to check: ";
+        cin >> num;
+
+        if (num < 0) {
+            cout << "Error: Number must be non-negative." << endl;
+            return 1;
+        }
+
+        if (isFibonacci(num)) {
+            cout << num << " is a Fibonacci number." << endl;
+        } else {
+            cout << num << " is NOT a Fibonacci number." << endl;
+        }
+    }
+    else {
+        cout << "Invalid operation selected." << endl;
+    }
+
+    return 0;
+}
+
+void printFibonacci(int n) {
+    long long a = 0, b = 1;
+
+    cout << "Fibonacci sequence: ";
+    for (int i = 0; i < n; i++) {
+        cout << a << (i == n - 1 ? "" : " ");
+        long long next = a + b;
+        a = b;
+        b = next;
+    }
+    cout << endl;
+}
+
+bool isFibonacci(long long num) {
+    long long a = 0, b = 1;
+   
+        while (a < num) {
+        long long next = a + b;
+        a = b;
+        b = next;
+    }
+
+    return (a == num);
+}
